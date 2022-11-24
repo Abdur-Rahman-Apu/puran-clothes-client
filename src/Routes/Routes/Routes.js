@@ -3,6 +3,7 @@ import Main from "../../Layouts/Main"
 import Categories from "../../Pages/Categories/Categories/Categories"
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage"
 import Home from "../../Pages/Home/Home/Home"
+import Products from "../../Pages/Products/Products"
 
 export const router = createBrowserRouter([
     {
@@ -19,9 +20,9 @@ export const router = createBrowserRouter([
                 element: <Categories></Categories>
             },
             {
-                path: '/categories',
-                element: <Categories></Categories>,
-                loader: ({ params }) => { fetch(`http://localhost:5000/category/${params.id}`) },
+                path: '/category/:id',
+                element: <Products></Products>,
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`),
             },
 
         ]
