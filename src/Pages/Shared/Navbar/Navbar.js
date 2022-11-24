@@ -16,11 +16,11 @@ const Navbar = () => {
 
     </>
     return (
-        <div className='w-100'>
+        <div className='w-100 mx-7'>
 
 
 
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100 shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
