@@ -8,7 +8,9 @@ import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 const AddProduct = () => {
 
     const { user } = useContext(AuthContext);
+    console.log(user);
     const sellerEmail = user.email
+    const sellerName = user.displayName;
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -51,6 +53,7 @@ const AddProduct = () => {
                         phone,
                         resalePrice,
                         yearOfPurchase,
+                        sellerName,
                         saleStatus: 'Available',
                         advertise: 0,
                         verified: 0,
@@ -73,7 +76,7 @@ const AddProduct = () => {
                             if (data.acknowledged) {
 
                                 toast.success(`Data is added successfully`)
-                                // navigate('/dashboard/myproduct')
+                                navigate('/dashboard/myproduct')
                             }
                         })
                         .catch(error => {
