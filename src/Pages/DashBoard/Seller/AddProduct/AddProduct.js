@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment'
+import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
+
+    const { user } = useContext(AuthContext);
+    const sellerEmail = user.email
+
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const imageHostKey = process.env.REACT_APP_imgKey;
@@ -50,10 +55,11 @@ const AddProduct = () => {
                         advertise: 0,
                         verified: 0,
                         postTime,
+                        sellerEmail,
                         image: imgData.data.url
                     }
 
-                    fetch(`http://localhost:5000/addproduct`, {
+                    fetch(`http://localhost:5000/addProduct`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

@@ -37,7 +37,7 @@ const DashboardLayout = () => {
                         {
                             (!role.isAdmin && role.role === 'Seller') &&
                             <>
-                                <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/addproduct'>Add product</Link></li>
+                                <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/addProduct'>Add product</Link></li>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/myproduct'>My products</Link></li>
                             </>
                         }
