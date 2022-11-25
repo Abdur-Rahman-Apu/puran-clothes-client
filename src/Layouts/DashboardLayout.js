@@ -24,11 +24,12 @@ const DashboardLayout = () => {
 
                         {/* admin  */}
                         {
-                            role.isAdmin && <>
+                            role.isAdmin ? <>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/allseller'>All Seller</Link></li>
 
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
                             </>
+                                : ''
                         }
 
                         {/* seller  */}
@@ -44,7 +45,7 @@ const DashboardLayout = () => {
                         {/* buyer  */}
                         {
 
-                            (!role.isAdmin && role.role === 'User') &&
+                            !role.isAdmin && role.role === 'User' &&
                             <>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/myorders'>My orders</Link></li>
                             </>
