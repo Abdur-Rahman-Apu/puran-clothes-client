@@ -19,7 +19,7 @@ const Register = () => {
 
         const image = data.img[0]
 
-        const { name, email, password, userType } = data
+        const { name, email, password, userType, phone } = data
 
         const formData = new FormData()
         formData.append('image', image)
@@ -36,6 +36,7 @@ const Register = () => {
                     const registeredUser = {
                         name: name,
                         email: email,
+                        phone,
                         image: imgData.data.url,
                         role: userType,
                         isAdmin: 0
@@ -120,6 +121,12 @@ const Register = () => {
 
                             <input {...register("email", { required: true })} aria-invalid={errors.email ? "true" : "false"} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" />
                             {errors.email?.type === 'required' && <p className='text-red-400' role="alert">Email is required</p>}
+                        </div>
+                        <div>
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
+
+                            <input {...register("phone", { required: true })} aria-invalid={errors.phone ? "true" : "false"} type="text" name="phone" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="+8801981504997" />
+                            {errors.phone?.type === 'required' && <p className='text-red-400' role="alert">Phone is required</p>}
                         </div>
                         <div>
                             <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>

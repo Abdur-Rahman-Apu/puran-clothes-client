@@ -1,6 +1,50 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios'
+import toast from 'react-hot-toast'
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import Loading from '../../Loading/Loading';
 
 const AllBuyer = () => {
+    //Api call using axios (1)
+
+    const { isLoading } = useContext(AuthContext)
+
+    const [buyers, setBuyers] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/allBuyers')
+            .then(res => {
+                setBuyers(res.data)
+            })
+            .catch(error => {
+                toast.error("Can not get data")
+            })
+    }, [])
+
+    // delete seller 
+    const handleDelete = (id) => {
+        console.log(id);
+        fetch(`http://localhost:5000/allusers/${id}`, {
+            method: 'PATCH',
+
+        })
+            .then(() => {
+                toast.success("Deleted successfully")
+
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+    }
+
+
+
+    console.log(buyers);
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     return (
         <div>
             <h1 className='text-3xl font-bold text-center my-6'>All buyers</h1>
@@ -17,39 +61,35 @@ const AllBuyer = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Location</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <th>
-                                    1
-                                </th>
-                                <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                            {
+                                buyers.map((buyer, index) => <tr>
+                                    <th>
+                                        {index + 1}
+                                    </th>
+                                    <td>
+                                        <div className="flex items-center space-x-3">
+
+                                            <div>
+                                                <div className="font-bold">{buyer.name}</div>
+
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className="font-bold">Hart Hagerty</div>
-                                            <div className="text-sm opacity-50">United States</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    Zemlak, Daniel and Leannon
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                                </td>
-                                <td>Purple</td>
-                                <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
-                                </th>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        {buyer.email}
+
+                                    </td>
+                                    <td>Purple</td>
+                                    <th>
+                                        <button onClick={() => handleDelete(buyer._id)} className="btn bg-red-400 border-0 btn-xs">Delete</button>
+                                    </th>
+                                </tr>)
+                            }
 
 
                         </tbody>
