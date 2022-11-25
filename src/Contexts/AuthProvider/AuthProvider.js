@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, sendPasswordResetEmail, updateProfile } from "firebase/auth";
-import { app } from '../../../Firebase/firebase.init';
+import { app } from '../../Firebase/Firebase.config';
 
 
 
