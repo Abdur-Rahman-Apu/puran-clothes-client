@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import DashboardLayout from "../../Layouts/DashboardLayout"
 import Main from "../../Layouts/Main"
+import Blog from "../../Pages/Blog/Blog"
 import Categories from "../../Pages/Categories/Categories/Categories"
 import AllBuyer from "../../Pages/DashBoard/AllBuyer/AllBuyer"
 import AllSeller from "../../Pages/DashBoard/AllSeller/AllSeller"
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/category/:id',

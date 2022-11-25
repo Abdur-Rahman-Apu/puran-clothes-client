@@ -33,6 +33,23 @@ const AllSeller = () => {
             })
     }
 
+
+    // verify status 
+    const handleVerify = id => {
+        fetch(`http://localhost:5000/verifyStatus/${id}`, {
+            method: 'PATCH'
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    toast.success("Verified successfullyl");
+                    refetch()
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+    }
+
     if (isLoading) return <Loading></Loading>
     return (
         <div>
@@ -50,7 +67,8 @@ const AllSeller = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Action</th>
+                                <th>Verify</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +92,11 @@ const AllSeller = () => {
 
                                     </td>
                                     <td>{seller.phone}</td>
+                                    {
+                                        <th>
+                                            <button disabled={seller.verified} onClick={() => handleVerify(seller._id)} className="btn bg-blue-400 border-0 btn-xs">Verify</button>
+                                        </th>
+                                    }
                                     <th>
                                         <button onClick={() => handleDelete(seller._id)} className="btn bg-red-400 border-0 btn-xs">Delete</button>
                                     </th>
