@@ -3,7 +3,9 @@ import Main from "../../Layouts/Main"
 import Categories from "../../Pages/Categories/Categories/Categories"
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage"
 import Home from "../../Pages/Home/Home/Home"
+import Login from "../../Pages/Login/Login"
 import Products from "../../Pages/Products/Products"
+import Register from "../../Pages/Register/Register"
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +20,14 @@ export const router = createBrowserRouter([
             {
                 path: '/categories',
                 element: <Categories></Categories>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             },
             {
                 path: '/category/:id',
