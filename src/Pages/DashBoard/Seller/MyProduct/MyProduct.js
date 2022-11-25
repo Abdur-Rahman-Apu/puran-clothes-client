@@ -9,7 +9,7 @@ const MyProduct = () => {
     const { user } = useContext(AuthContext)
 
     const { isLoading, refetch, data: myProducts = [] } = useQuery({
-        queryKey: ['repoData'],
+        queryKey: ['myproduct'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
             const data = res.json()
@@ -112,7 +112,7 @@ const MyProduct = () => {
                                     <td>{product.saleStatus}</td>
 
                                     <td>
-                                        <button disabled={product.advertise} onClick={() => { handleAdvertise(product._id) }} className="btn btn-xs bg-yellow-500 border-0">Advertise</button>
+                                        <button disabled={product.advertise && product.saleStatus === 'Available'} onClick={() => { handleAdvertise(product._id) }} className="btn btn-xs bg-yellow-500 border-0">Advertise</button>
                                     </td>
 
                                     <th>
