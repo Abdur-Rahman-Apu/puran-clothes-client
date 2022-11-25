@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import useRole from '../../customHook/useRole';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Product = ({ product, setClothe }) => {
     console.log(product);
@@ -14,6 +15,24 @@ const Product = ({ product, setClothe }) => {
 
     const [role] = useRole(user?.email)
     console.log(role);
+
+
+    const [sellers, setSellers] = useState([])
+    // const [searchSeller, setSearchSeller] = useState('')
+
+    useEffect(() => {
+        fetch('http://localhost:5000/allSellers')
+            .then(res => res.json())
+            .then(sellers => setSellers(sellers))
+            .catch(error => {
+                toast.error(error.message)
+            })
+    }, [])
+
+    console.log(sellers);
+
+    // const searchVerified = sellers.find(seller => seller.sellerName === sellerName)
+    // console.log(searchVerified);
 
 
 

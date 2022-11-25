@@ -18,6 +18,9 @@ const MyProduct = () => {
     })
 
 
+
+
+
     //delete product
     const handleDelete = id => {
 
