@@ -1,15 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import google from '../../Assets/Google logo/google.svg'
 import { useForm } from "react-hook-form";
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    const { user, logIn, isLoading } = useContext(AuthContext)
+
+    const location = useLocation()
+
+    const navigate = useNavigate()
+
+    const from = location?.state?.from?.pathname || '/'
+
 
     const handleLogIn = data => {
-        console.log(data);
+        fetch(`http://localhost:5000/users?email=${data.email}&role=${data.userType}`)
+            .then(res => res.json())
+            .then(serverData => {
+                if (serverData.isFound === 'Yes') {
+                    logIn(data.email, data.password)
+                        .then(result => {
+                            const user = result.user;
+                            console.log(user);
+
+                            toast.success("Log in successfully")
+                        })
+                        .catch(error => {
+                            toast.error(error.message)
+                        })
+
+                } else {
+                    toast.error('User Type is not matched')
+                }
+            })
+            .catch(error => {
+                toast.error("User type is not matched")
+            })
+
+
+
+
+
+
     }
     return (
         <div>

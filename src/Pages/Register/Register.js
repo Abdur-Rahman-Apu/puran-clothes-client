@@ -37,7 +37,8 @@ const Register = () => {
                         name: name,
                         email: email,
                         image: imgData.data.url,
-                        role: userType
+                        role: userType,
+                        isAdmin: 0
                     }
 
                     createUser(email, password)
