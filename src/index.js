@@ -8,6 +8,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import AuthProvider from './Contexts/AuthProvider/AuthProvider';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
@@ -15,6 +16,10 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
         <App />
       </AuthProvider>
     </QueryClientProvider>
