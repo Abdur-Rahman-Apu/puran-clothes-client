@@ -84,7 +84,7 @@ const AllBuyer = () => {
                                         {buyer.email}
 
                                     </td>
-                                    <td>Purple</td>
+                                    <td>{buyer.phone}</td>
                                     <th>
                                         <button onClick={() => handleDelete(buyer._id)} className="btn bg-red-400 border-0 btn-xs">Delete</button>
                                     </th>

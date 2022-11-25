@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, sendPasswordResetEmail, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, sendPasswordResetEmail, updateProfile, deleteUser } from "firebase/auth";
 import { app } from '../../Firebase/Firebase.config';
 
 
@@ -48,6 +48,11 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, profile)
     }
 
+    //delete user
+    const removeUser = () => {
+        deleteUser(auth.currentUser)
+    }
+
 
 
 
@@ -71,7 +76,8 @@ const AuthProvider = ({ children }) => {
         resetPassword,
         setUser,
         updateUserProfile,
-        loading
+        loading,
+        removeUser
     }
     return (
         <div>
