@@ -38,6 +38,24 @@ const MyProduct = () => {
             })
     }
 
+
+    const handleAdvertise = id => {
+        fetch(`http://localhost:5000/updateAdvertise/${id}`, {
+            method: 'PATCH'
+        })
+            .then((data) => {
+                console.log(data);
+                if (data.status === 200) {
+                    toast.success("Advertised successfully")
+                    refetch()
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+
+    }
+
     console.log(myProducts);
 
     if (isLoading) return <Loading></Loading>
@@ -94,7 +112,7 @@ const MyProduct = () => {
                                     <td>{product.saleStatus}</td>
 
                                     <td>
-                                        <button className="btn btn-xs bg-yellow-500 border-0">Advertise</button>
+                                        <button disabled={product.advertise} onClick={() => { handleAdvertise(product._id) }} className="btn btn-xs bg-yellow-500 border-0">Advertise</button>
                                     </td>
 
                                     <th>
