@@ -4,6 +4,7 @@ import Main from "../../Layouts/Main"
 import Blog from "../../Pages/Blog/Blog"
 import Categories from "../../Pages/Categories/Categories/Categories"
 import AllBuyer from "../../Pages/DashBoard/AllBuyer/AllBuyer"
+import Payment from "../../Pages/DashBoard/AllBuyer/Payment/Payment/Payment"
 import AllSeller from "../../Pages/DashBoard/AllSeller/AllSeller"
 import Myorders from "../../Pages/DashBoard/Buyer/Myorders"
 import Dashboard from "../../Pages/DashBoard/DashBoard/Dashboard"
@@ -90,6 +91,11 @@ export const router = createBrowserRouter([
                 path: '/dashboard/reportedItems',
                 element: <ReportedItems></ReportedItems>
 
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
 
         ]

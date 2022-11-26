@@ -50,7 +50,9 @@ const AuthProvider = ({ children }) => {
 
     //delete user
     const removeUser = () => {
-        deleteUser(auth.currentUser)
+
+        console.log(auth.currentUser);
+        // deleteUser(auth.currentUser)
     }
 
 

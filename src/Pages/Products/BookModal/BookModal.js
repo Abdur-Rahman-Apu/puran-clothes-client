@@ -27,7 +27,8 @@ const BookModal = ({ product, setClothe, user }) => {
             buyerEmail: user?.email,
             buyerName: user?.displayName,
             phone,
-            meetingPlace
+            meetingPlace,
+            paid: 0
         }
 
         fetch('http://localhost:5000/bookings', {

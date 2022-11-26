@@ -39,7 +39,8 @@ const Register = () => {
                         phone,
                         image: imgData.data.url,
                         role: userType,
-                        isAdmin: 0
+                        isAdmin: 0,
+                        verified: 0
                     }
 
                     createUser(email, password)

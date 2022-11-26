@@ -3,13 +3,18 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import Loading from '../../Loading/Loading';
+import { useQuery } from '@tanstack/react-query'
+
+
+
 
 const AllBuyer = () => {
-    //Api call using axios (1)
 
-    const { isLoading } = useContext(AuthContext)
+    const { isLoading, removeUser } = useContext(AuthContext)
 
     const [buyers, setBuyers] = useState([])
+
+    //Api call using axios (1)
 
     useEffect(() => {
         axios.get('http://localhost:5000/allBuyers')
@@ -22,20 +27,35 @@ const AllBuyer = () => {
     }, [])
 
     // delete seller 
+    // const [allUsers, setAllUsers] = useState([])
     const handleDelete = (id) => {
-        console.log(id);
+
+
+
+        // const search = buyers.find(user => user._id === id)
+        // console.log(search.user.uid);
+
+        // console.log(user);
+        // deleteUser(search.user)
+        //     .then(() => { console.log("Success"); })
+        //     .catch(error => console.log(error))
+        // console.log(id);
+
         fetch(`http://localhost:5000/allusers/${id}`, {
             method: 'DELETE',
 
         })
-            .then(() => {
-                toast.success("Deleted successfully")
-
+            .then((res) => {
+                if (res.status === 200) {
+                    toast.success("Deleted Successfully")
+                }
             })
             .catch(error => {
                 toast.error(error.message)
             })
     }
+
+
 
 
 

@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { user, logIn, isLoading } = useContext(AuthContext)
+    const { user, logIn, isLoading, googleLogIn } = useContext(AuthContext)
 
     const location = useLocation()
 
@@ -41,12 +41,43 @@ const Login = () => {
             .catch(error => {
                 toast.error("User type is not matched")
             })
+    }
 
+    const handleGoogleLogIn = () => {
+        googleLogIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
 
+                const registeredUser = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    image: user?.photoURL,
+                    isAdmin: 0,
+                    role: 'User',
+                    verified: 0,
+                    user
+                }
 
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(registeredUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        toast.success(`Data is added successfully`)
 
+                    })
+                    .catch(error => {
+                        toast.error(error.message)
+                    })
 
-
+            })
+            .catch(error => toast.error("Something went wrong"))
     }
     return (
         <div>
@@ -91,7 +122,7 @@ const Login = () => {
                         <p class="text-center font-semibold mx-4 mb-0">OR</p>
                     </div>
 
-                    <button className='text-center w-full card flex-row h-11  bg-base-100 border shadow-lg justify-center items-center'>
+                    <button onClick={handleGoogleLogIn} className='text-center w-full card flex-row h-11  bg-base-100 border shadow-lg justify-center items-center'>
                         <img className='h-7 mr-2' src={google} alt="google" />
                         Log in with google
 

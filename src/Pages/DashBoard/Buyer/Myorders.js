@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Loading/Loading';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Myorders = () => {
 
@@ -86,7 +87,11 @@ const Myorders = () => {
                                     <td>{order.price}</td>
 
                                     <td>
-                                        <button className="btn bg-blue-400 border-0 btn-sm">Pay</button>
+                                        {
+                                            !order.paid && <Link to={`/dashboard/payment/${order._id}`}>
+                                                <button className="btn bg-blue-400 border-0 btn-sm">Pay</button>
+                                            </Link>
+                                        }
                                     </td>
                                     <th>
                                         <button onClick={() => handleDelete(order._id)} className="btn bg-red-400 border-0 btn-sm">Delete</button>
