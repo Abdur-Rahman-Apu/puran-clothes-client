@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom'
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import BookModal from './BookModal/BookModal';
 import Product from './Product/Product';
 
 const Products = () => {
     const products = useLoaderData()
+
+    const { user } = useContext(AuthContext)
 
     const [clothe, setClothe] = useState(null)
 
@@ -22,7 +25,12 @@ const Products = () => {
 
 
                 {
-                    clothe && <BookModal product={clothe} setClothe={setClothe}></BookModal>
+                    clothe &&
+                    <BookModal
+                        product={clothe}
+                        setClothe={setClothe}
+                        user={user}
+                    ></BookModal>
                 }
 
 

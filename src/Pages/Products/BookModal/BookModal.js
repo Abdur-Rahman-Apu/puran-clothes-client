@@ -1,9 +1,54 @@
+
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const BookModal = ({ product }) => {
+const BookModal = ({ product, setClothe, user }) => {
 
-    const { productName, productImage, location, originalPrice, resalePrice, postTime, sellerName, verified, yearsOfUse } = product;
+
+
+
+
+    const { productName, productImage, location, originalPrice, resalePrice, postTime, sellerName, sellerEmail, verified, yearsOfUse } = product;
     console.log(product);
+
+    const handleBooking = (event) => {
+        event.preventDefault()
+        const form = event.target;
+        const phone = form.phone.value;
+        const meetingPlace = form.meeting.value;
+        console.log(phone, meetingPlace);
+
+        const bookProduct = {
+            productName,
+            productImage,
+            sellerName,
+            sellerEmail,
+            price: resalePrice,
+            buyerEmail: user?.email,
+            buyerName: user?.displayName,
+            phone,
+            meetingPlace
+        }
+
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    console.log(data);
+                    setClothe(null)
+                    toast.success("Booking is confirmed")
+                } else {
+                    toast.error(data.message)
+                }
+            })
+
+    }
     return (
         <>
             <input type="checkbox" id="my-modal-3" className="modal-toggle" />
@@ -12,21 +57,21 @@ const BookModal = ({ product }) => {
                     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">Order now</h3>
 
-                    <form className='grid grid-cols-1 gap-6 mt-10'>
+                    <form onSubmit={handleBooking} className='grid grid-cols-1 gap-6 mt-10'>
 
-                        <input type="text" disabled value="user name" className="input input-bordered input-accent w-full max-w-xs" />
-                        <input type="text" disabled value="email" className="input input-bordered input-accent w-full max-w-xs" />
+                        <input type="text" disabled value={user?.displayName} className="input input-bordered input-accent w-full max-w-xs" />
+                        <input type="text" disabled value={user?.email} className="input input-bordered input-accent w-full max-w-xs" />
                         <input type="text" disabled value={productName} className="input input-bordered input-accent w-full max-w-xs" />
                         <input type="text" disabled value={resalePrice} className="input input-bordered input-accent w-full max-w-xs" />
 
 
 
 
-                        <input name='name' type="text" placeholder="Enter your phone no" className="input input-bordered input-accent w-full max-w-xs" />
-                        <input name='name' type="text" placeholder="Enter meeting location" className="input input-bordered input-accent w-full max-w-xs" />
+                        <input name='phone' type="text" placeholder="Enter your phone no" className="input input-bordered input-accent w-full max-w-xs" required />
+                        <input name='meeting' type="text" placeholder="Enter meeting location" className="input input-bordered input-accent w-full max-w-xs" required />
 
 
-                        <input className='btn btn-accent' type="submit" value="SUBMIT" />
+                        <input className='btn bg-orange-400 border-0' type="submit" value="SUBMIT" />
                     </form>
                 </div>
             </div>
