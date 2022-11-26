@@ -8,7 +8,7 @@ const BookModal = ({ product, setClothe, user }) => {
 
 
 
-    const { productName, productImage, location, originalPrice, resalePrice, postTime, sellerName, sellerEmail, verified, yearsOfUse } = product;
+    const { productName, image, resalePrice, sellerName, sellerEmail } = product;
     console.log(product);
 
     const handleBooking = (event) => {
@@ -20,7 +20,7 @@ const BookModal = ({ product, setClothe, user }) => {
 
         const bookProduct = {
             productName,
-            productImage,
+            productImage: image,
             sellerName,
             sellerEmail,
             price: resalePrice,
