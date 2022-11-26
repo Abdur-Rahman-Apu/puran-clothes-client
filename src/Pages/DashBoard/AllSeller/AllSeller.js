@@ -35,8 +35,8 @@ const AllSeller = () => {
 
 
     // verify status 
-    const handleVerify = id => {
-        fetch(`http://localhost:5000/verifyStatus/${id}`, {
+    const handleVerify = email => {
+        fetch(`http://localhost:5000/verifyStatus?email=${email}`, {
             method: 'PATCH'
         })
             .then(res => {
@@ -94,7 +94,7 @@ const AllSeller = () => {
                                     <td>{seller.phone}</td>
                                     {
                                         <th>
-                                            <button disabled={seller.verified} onClick={() => handleVerify(seller._id)} className="btn bg-blue-400 border-0 btn-xs">Verify</button>
+                                            <button disabled={seller.verified} onClick={() => handleVerify(seller.email)} className="btn bg-blue-400 border-0 btn-xs">Verify</button>
                                         </th>
                                     }
                                     <th>
