@@ -1,121 +1,154 @@
 import React from 'react';
+import PrototypeInheritance from '../../Assets/Blog img/prototype-inheritance.jpg'
 
 const Blog = () => {
     return (
         <div className='my-10'>
 
-            <h1 className='text-3xl font-bold my-10 text-center text-orange-400'>Learn to crack interview</h1>
+            <h1 className='text-3xl font-bold my-10 text-center text-orange-600'>Learn to crack interview</h1>
 
 
             <div className='w-3/4 mx-auto'>
 
                 {/* question 1 */}
-                <div className="collapse collapse-arrow font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                <div className="collapse collapse-arrow font-medium text-left  border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title ">
-                        <p><span>Question 1: </span> Difference between SQL and NoSQL</p>
+                        <p><span>Question 1: </span>What are the different ways to manage a state in a React application?</p>
                     </div>
                     <div className="collapse-content border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                         <p className='p-5'>
-                            <h1 className='text-xl font-bold'>SQL database:</h1>
-                            <ul>
-                                <li>SQL databases are known as Relational databases</li>
-                                <li>It is an industry standard and very powerful language to execute complex queries</li>
-                                <li>It is vertically scalable</li>
-                                <li>It can extend their capacity on a single server by increasing their RAM, CPU or SSD.</li>
-                                <li>It has a fixed schema</li>
-                            </ul>
+                            <h1 className='text-xl text-center font-bold my-2'>Different ways to manage state in react:</h1>
+
+                            <ol>
+                                <li>
+                                    <h3 className='text-base font-bold my-2'>React Component Props</h3>
+                                    <p>This method is a very common and easy to mange state of the components. You have to pass the state via props. This is also known as prop drilling. It can be complicated for you sometimes. For example, your data is present in the grand parent state and you want to pass the data into the grandchild component. To do this, you have to pass data to child component at first and then the data will be passed to the grandchild component. It can be complicated more.</p>
+                                </li>
+
+                                <li>
+                                    <h3 className='text-base font-bold my-2'>React Context</h3>
+                                    <p>React context made easy to share states between multiple components. It is very easy to use and provides very clean code. It is very straight forward to use and has native support. </p>
+                                </li>
+
+                                <li>
+                                    <h3 className='text-base font-bold my-2'>Redux state management</h3>
+                                    <p>Redux is a separate library. It permits you to maintain a centralized store for your apps shared state. It also provides uni-directional data flow for the state. It is very popular than MobX, Relay + GraphQL, Jumpsuit etc.  </p>
+                                </li>
+                            </ol>
+
                         </p>
-                        <p className='p-5'>
-                            <h1 className='text-xl font-bold'>NoSQL database:</h1>
-                            <ul>
-                                <li>NoSQL databases are known as Non-Relational databases</li>
-                                <li>The syntax can vary from database to database</li>
-                                <li>It is vertically scalable</li>
-                                <li>It has no pre-defined schema</li>
-                                <li>It has a dynamic schema</li>
-                            </ul>
-                        </p>
+
                     </div>
                 </div>
 
                 {/* question 2 */}
-                <div className="collapse collapse-arrow font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                <div className="collapse collapse-arrow font-medium text-left  border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title ">
-                        <p><span>Question 2: </span> What is JWT, and how does it work?</p>
+                        <p><span>Question 2: </span>  How does prototypical inheritance work?</p>
                     </div>
                     <div className="collapse-content border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                        <p className='p-5'>
-                            The full form of JWT is Json Web Token. It is a way to transmit information securely between parties as a json object. JWT is written in json object. For securing API, JWT is very popular.
+                        <h3 className='text-xl text-center font-bold my-4'>Prototype inheritance</h3>
 
-                            <p className='font-bold'>Working process:</p>
+                        <p>
+                            Inheritance means the child component will get all methods and properties from the parent component. It is similar to the way of getting father wealth. However, in the prototype inheritance, an object will get other objects property or methods via prototype linkage. In the JavaScript, all objects inherit properties and methods from a prototype.
+                        </p>
 
-                            If the user log in with his/her credentials, the server creates access and refresh tokens and sends then to the client. These tokens are stores in the client side such as local storage, HTTP only cookie. The access token will be sent to the server. The server will take the first and second part of the token and decode the secret. If the output is matched then the information is correct. The access token will expire after a certain time. You will get another access token using the refresh token otherwise you have to log in
+                        <h3 className='text-xl font-bold my-3'>Graphical representation</h3>
+
+                        <img src={PrototypeInheritance} alt="prototype inheritance img" />
+
+                        <p className='my-5'>You can see in the above picture that there is a prototype inheritance between a rabbit another create prototype object which is an animal. We will fixed the rabbits prototype object as an animal prototype object. There, we will keep all the values of rabbit for a purpose. The reason behind this task is that if rabbit properties are missing then JavaScript will automatically get it  from the animal prototype object.
                         </p>
                     </div>
                 </div>
 
                 {/* question 3 */}
-                <div className="collapse collapse-arrow font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                <div className="collapse collapse-arrow font-medium text-left border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title ">
-                        <p><span>Question 3: </span> What is the difference between javascript and NodeJS?</p>
+                        <p><span>Question 3: </span>What is a unit test? Why should we write unit tests?</p>
                     </div>
                     <div className="collapse-content border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                        <p className='p-5'>
-                            <h1 className='text-xl font-bold'>Javascript</h1>
-                            <ul>
-                                <li>
-                                    Javascript is a programming language.
-                                </li>
-                                <li>
-                                    Used for writing scripts on the website.
-                                </li>
-                                <li>
-                                    It runs only in the browsers
-                                </li>
-                                <li>
-                                    It is generally used on the client side.
-                                </li>
-                                <li>
-                                    It can run in any browser engin
-                                </li>
-                            </ul>
-                        </p>
-                        <p className='p-5'>
-                            <h1 className='text-xl font-bold'>Node Js</h1>
-                            <ul>
-                                <li>
-                                    NodeJS  is a Javascript runtime.
-                                </li>
-                                <li>
-                                    By using it, we can run Javascript outside of the browser.
-                                </li>
-                                <li>
-                                    It has no capability to add HTML tags.
-                                </li>
-                                <li>
-                                    It is generally used on the server side.
-                                </li>
-                                <li>
-                                    V8 engine is present in the Node Js
-                                </li>
-                            </ul>
-                        </p>
+
+                        <h1 className='text-xl font-bold text-center my-3'>Unit testing</h1>
+
+                        <p>Unit testing is a process of checking your functions to check whether your code is working perfectly or not. In a simple word, it is a process of finding bugs.</p>
+
+                        <p className='text-xl font-bold my-3'>Importance of unit test:</p>
+
+                        <p>The main goal of the unit test is reduce bugs especially that bugs which arises from integration. Sometimes we might think that everything is working fine locally. But after committing their code, they can see that another commit has broken the app. This type of testing helps to catch these problems before they become issues and when combined with automated continuous integration pipelines, can make sure that the daily build is always working properly. </p>
+
+                        <p>We should write unit test because in this type of testing we test each functions individually and if we can find any bugs, then we can fix it easily.</p>
                     </div>
                 </div>
 
                 {/* question 4 */}
-                <div className="collapse collapse-arrow font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                <div className="collapse collapse-arrow font-medium text-left border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title ">
-                        <p><span>Question 4: </span> How does NodeJS handle multiple requests at the same time?</p>
+                        <p><span>Question 4: </span>  React vs. Angular vs. Vue?</p>
                     </div>
                     <div className="collapse-content border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                        <p className='p-5'>
-                            Node JS is single threaded. The entire architecture of the Node Js is not single threaded. Its event loops are only single threaded. Node JS handle multiple client requests using EventQueue. By using the concept of the event driven architecture, Node JS is built. It has its own Event Loop. And it is an infinite loop that receives requests and process them. Event Loop is the listener for the event queue.
-                        </p>
+                        <div className='p-5'>
+                            <h3 className='text-xl font-bold my-3'>React</h3>
+                            <p className='my-3'>
+                                <ul>
+                                    <li><span className='font-bold'>Type:</span> Open source JS library</li>
+                                    <li><span className='font-bold'>Size:</span> 109.7KB production and 774 KB development</li>
+                                    <li><span className='font-bold'>Easy to learn:</span> Moderate</li>
+                                    <li><span className='font-bold'>Coding speed:</span> Normal</li>
+                                    <li><span className='font-bold'>Documentation:</span> Yes</li>
+                                    <li><span className='font-bold'>Startup time:</span> Quick</li>
+                                    <li><span className='font-bold'>Complete web apps:</span> Needs to be integrated with many other tools</li>
+                                    <li><span className='font-bold'>Data binding:</span> Uni-directional</li>
+                                    <li><span className='font-bold'>Rendering:</span> Server side </li>
+                                    <li><span className='font-bold'>Model:</span> Virtual</li>
+                                    <li><span className='font-bold'>Code reusability:</span> No, only CSS</li>
+
+                                </ul>
+                            </p>
+                        </div>
+                        <div className='p-5'>
+                            <h3 className='text-xl font-bold my-3'>Angular</h3>
+                            <p className='my-3'>
+                                <ul>
+                                    <li><span className='font-bold'>Type:</span> Javascript framework</li>
+                                    <li><span className='font-bold'>Size:</span> 167KB production and 1.2 MB development</li>
+                                    <li><span className='font-bold'>Easy to learn:</span> Steep</li>
+                                    <li><span className='font-bold'>Coding speed:</span> Slow</li>
+                                    <li><span className='font-bold'>Documentation:</span> Yes</li>
+                                    <li><span className='font-bold'>Startup time:</span> Longer due to its large codebase</li>
+                                    <li><span className='font-bold'>Complete web apps:</span> Can be used on standalone basis</li>
+                                    <li><span className='font-bold'>Data binding:</span> Bi-directional</li>
+                                    <li><span className='font-bold'>Rendering:</span> Client side </li>
+                                    <li><span className='font-bold'>Model:</span> MVC</li>
+                                    <li><span className='font-bold'>Code reusability:</span> Yes</li>
+
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div className='p-5'>
+                            <h3 className='text-xl font-bold my-3'>Vue</h3>
+                            <p className='my-3'>
+                                <ul>
+                                    <li><span className='font-bold'>Type:</span> Progressive JavaScript Framework</li>
+                                    <li><span className='font-bold'>Size:</span> 30.7KB production and 279 KB development</li>
+                                    <li><span className='font-bold'>Easy to learn:</span> Easy</li>
+                                    <li><span className='font-bold'>Coding speed:</span> Fast</li>
+                                    <li><span className='font-bold'>Documentation:</span> Yes</li>
+                                    <li><span className='font-bold'>Startup time:</span> Quick</li>
+                                    <li><span className='font-bold'>Complete web apps:</span> Requires third party tools</li>
+                                    <li><span className='font-bold'>Data binding:</span> Bi-directional</li>
+                                    <li><span className='font-bold'>Rendering:</span> Server side </li>
+                                    <li><span className='font-bold'>Model:</span> Virtual</li>
+                                    <li><span className='font-bold'>Code reusability:</span> Yes, HTML & CSS</li>
+
+                                </ul>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
