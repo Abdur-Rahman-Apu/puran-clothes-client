@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faLocationDot, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import useRole from '../../customHook/useRole';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query'
 
 const Product = ({ product, setClothe }) => {
+
+
     console.log(product);
 
     const { user } = useContext(AuthContext)
 
-    const { productName, image, location, originalPrice, resalePrice, postTime, sellerName, verified, yearOfPurchase, description, condition, saleStatus, phone } = product;
+    const { _id, productName, image, location, originalPrice, resalePrice, postTime, sellerName, verified, yearOfPurchase, description, condition, saleStatus, phone } = product;
 
     const [role] = useRole(user?.email)
     console.log(role);
@@ -47,6 +50,34 @@ const Product = ({ product, setClothe }) => {
 
     // const postedTime = postTime.toLocaleDateString('en-us', options)
     // console.log(postTime.toLocaleDateString('en-us', options));
+
+
+    const handleReportedItems = id => {
+
+        const reportedItems = {
+            productName,
+            image,
+            sellerName,
+            sellerEmail: product.sellerEmail
+        }
+
+        fetch(`http://localhost:5000/reportedItems`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(reportedItems)
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    toast.success("Reported successfully")
+
+                } else {
+                    toast.error("Something is wrong")
+                }
+            })
+            .catch(error => toast.error(error.message))
+    }
 
     return (
 
@@ -106,9 +137,19 @@ const Product = ({ product, setClothe }) => {
                 </div>
 
                 <div class="my-2">
-                    <h3 className='text-xl font-bold text-orange-400 mb-3'>Condition:</h3>
+
                     <div className='flex justify-between items-center'>
-                        <p class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">{condition}</p>
+                        <div>
+                            <h3 className='text-xl font-bold text-orange-400 mb-3'>Condition:</h3>
+                            <p class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">{condition}</p>
+                        </div>
+
+                        <div>
+                            <button onClick={() => handleReportedItems(_id)} className="btn btn-sm border-0 bg-red-600 gap-2">
+                                Report
+                                <FontAwesomeIcon className='mr-3' icon={faDeleteLeft} />
+                            </button>
+                        </div>
                     </div>
                 </div>
 

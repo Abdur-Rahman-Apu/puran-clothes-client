@@ -43,7 +43,7 @@ const Myorders = () => {
         <div>
             <h1 className='text-3xl font-bold text-center my-6'>My Orders</h1>
 
-            <div>
+            <div className='mx-5'>
                 <div className="overflow-x-auto w-full">
                     <table className="table w-full">
 
