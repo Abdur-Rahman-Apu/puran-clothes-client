@@ -15,6 +15,10 @@ const Product = ({ product, setClothe }) => {
 
     const { _id, productName, image, location, originalPrice, resalePrice, postTime, sellerName, verified, yearOfPurchase, description, condition, saleStatus, phone } = product;
 
+    const nowYear = new Date().getFullYear()
+
+    const yearOfUse = nowYear - yearOfPurchase
+
     const [role] = useRole(user?.email)
     console.log(role);
 
@@ -165,12 +169,12 @@ const Product = ({ product, setClothe }) => {
                 <div class="my-4  pb-5 flex justify-between items-center">
                     <p>Original price: <span className='font-bold text-orange-400'>${originalPrice}</span></p>
 
-                    <p>Years of use: <span className='font-bold text-orange-400'>{yearOfPurchase}</span></p>
+                    <p>Years of use: <span className='font-bold text-orange-400'>{yearOfUse}</span></p>
                 </div>
 
                 <div class="flex items-center justify-between">
                     <span class="text-3xl text-orange-400 font-bold text-gray-900 dark:text-white">${resalePrice}</span>
-                    <label disabled={role.role === 'Seller'} htmlFor='my-modal-3' onClick={() => setClothe(product)} class=" btn border-0 text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-blue-500 dark:focus:ring-orange-600">Book Now</label>
+                    <label disabled={role?.role !== 'Buyer' && !user?.email} htmlFor='my-modal-3' onClick={() => setClothe(product)} class=" btn border-0 text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-blue-500 dark:focus:ring-orange-600">Book Now</label>
                 </div>
 
 

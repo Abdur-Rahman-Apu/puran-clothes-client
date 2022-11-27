@@ -159,7 +159,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text font-bold">Years of purchase</span>
                         </label>
-                        <input {...register("yearOfPurchase", { required: true })} aria-invalid={errors.yearOfPurchase ? "true" : "false"} className="input input-bordered w-full " placeholder="Enter your of purchase" />
+                        <input {...register("yearOfPurchase", { required: true })} aria-invalid={errors.yearOfPurchase ? "true" : "false"} className="input input-bordered w-full " placeholder="Purchase year" />
 
                         {errors.yearOfPurchase?.type === 'required' && <p className='text-red-400' role="alert">Field is required</p>}
 

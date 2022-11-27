@@ -149,13 +149,13 @@ const CheckoutForm = ({ booking }) => {
                 <p className='text-red-500'>{cardError}</p>
                 <div>
                     {
-                        success && <div>
+                        success && <div className='my-10'>
                             <div className='flex justify-center'>
-                                <img className='w-1/2' src={PaymentImage} alt="payment img" />
+                                <img className='' src={PaymentImage} alt="payment img" />
                             </div>
-                            <div className='flex justify-center'>
-                                <p className='text-sm text-green-500'>{success}</p>
-                                <p className='text-sm '>Your transaction id is: {transactionID}</p>
+                            <div className='flex flex-col items-center justify-center'>
+                                <p className='text-xl font-bold text-green-500'>{success}</p>
+                                <p className='text-sm '>Your transaction id is: <span className='font-bold '>{transactionID}</span></p>
                             </div>
                         </div>
                     }

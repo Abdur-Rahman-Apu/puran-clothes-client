@@ -53,10 +53,12 @@ const Stats = () => {
 
 
     return (
-        <div className='flex justify-center my-16'>
-            <div className="grid shadow-lg w-2/3 p-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
-                <div className="stat">
+        <div className='flex justify-center my-16 '>
+
+            <div className="border grid shadow-lg w-2/3 p-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+                <div className="stat md:border-r-2">
                     <div className="stat-figure text-secondary">
 
                     </div>
@@ -65,7 +67,7 @@ const Stats = () => {
 
                 </div>
 
-                <div className="stat">
+                <div className="stat lg:border-r-2">
                     <div className="stat-figure text-secondary">
 
                     </div>

@@ -11,7 +11,10 @@ const Home = () => {
             <Banner></Banner>
             <Categories></Categories>
             <Advertise></Advertise>
-            <Stats></Stats>
+            <div>
+                <h1 className='text-2xl font-bold text-center text-orange-400'>Achievements</h1>
+                <Stats></Stats>
+            </div>
         </div>
     );
 };

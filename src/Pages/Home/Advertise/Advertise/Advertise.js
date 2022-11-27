@@ -34,7 +34,7 @@ const Advertise = () => {
     if (advertisedProducts.length) {
         return (
             <div>
-                <h1 className='font-bold text-3xl my-5 px-10'>Advertise</h1>
+                <h1 className='font-bold text-3xl my-5 px-10 text-center py-10 text-orange-400'>Advertise</h1>
 
                 <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10'>
                     {
