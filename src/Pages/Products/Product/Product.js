@@ -23,7 +23,11 @@ const Product = ({ product, setClothe }) => {
     // const [searchSeller, setSearchSeller] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:5000/allSellers')
+        fetch('http://localhost:5000/allSellers', {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('clotheToken')}`
+            }
+        })
             .then(res => res.json())
             .then(sellers => setSellers(sellers))
             .catch(error => {
@@ -64,7 +68,8 @@ const Product = ({ product, setClothe }) => {
         fetch(`http://localhost:5000/reportedItems`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+
             },
             body: JSON.stringify(reportedItems)
         })
@@ -85,7 +90,7 @@ const Product = ({ product, setClothe }) => {
 
     return (
 
-        <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative">
+        <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative my-4">
 
             <img class="p-8 rounded-t-lg" src={image} alt="product" />
 

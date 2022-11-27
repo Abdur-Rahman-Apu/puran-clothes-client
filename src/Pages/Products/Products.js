@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigation } from 'react-router-dom'
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import Loading from '../Loading/Loading';
 import BookModal from './BookModal/BookModal';
 import Product from './Product/Product';
 
@@ -9,7 +10,14 @@ const Products = () => {
 
     const { user } = useContext(AuthContext)
 
+    const navigation = useNavigation()
+
     const [clothe, setClothe] = useState(null)
+
+
+    if (navigation.state === 'loading') {
+        return <Loading></Loading>
+    }
 
     return (
         <div>
