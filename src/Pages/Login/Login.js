@@ -45,14 +45,17 @@ const Login = () => {
                         })
                         .catch(error => {
                             toast.error(error.message)
+                            setLoad(false)
                         })
 
                 } else {
                     toast.error('User Type is not matched')
+                    setLoad(false)
                 }
             })
             .catch(error => {
                 toast.error("User type is not matched")
+                setLoad(false)
             })
     }
 

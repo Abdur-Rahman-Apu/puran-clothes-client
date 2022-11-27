@@ -8,7 +8,9 @@ const Payment = () => {
     const stripePromise = loadStripe(process.env.REACT_APP_PK);
 
     const { buyerEmail, buyerName, productName, productImage, price } = data;
+
     console.log(data);
+
     return (
         <div>
             <h1 className='text-center text-2xl font-bold my-5 '>To buy, Pay Now! Thank you</h1>

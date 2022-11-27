@@ -92,15 +92,18 @@ const Register = () => {
                                         })
                                         .catch(error => {
                                             toast.error(error.message)
+                                            setLoading(false)
                                         })
                                 })
                                 .catch(error => {
                                     toast.error("User name and photo are not added")
+                                    setLoading(false)
                                 })
 
                         })
                         .catch(error => {
                             toast.error(error.message)
+                            setLoading(false)
                         })
 
                 }

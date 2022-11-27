@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import toast from 'react-hot-toast';
+import PaymentImage from '../../../../../Assets/Payment_done/paymentSuccessful.png'
 
 const CheckoutForm = ({ booking }) => {
 
@@ -149,8 +150,13 @@ const CheckoutForm = ({ booking }) => {
                 <div>
                     {
                         success && <div>
-                            <p className='text-sm text-green-500'>{success}</p>
-                            <p className='text-sm '>Your transaction id is: {transactionID}</p>
+                            <div className='flex justify-center'>
+                                <img className='w-1/2' src={PaymentImage} alt="payment img" />
+                            </div>
+                            <div className='flex justify-center'>
+                                <p className='text-sm text-green-500'>{success}</p>
+                                <p className='text-sm '>Your transaction id is: {transactionID}</p>
+                            </div>
                         </div>
                     }
                 </div>
