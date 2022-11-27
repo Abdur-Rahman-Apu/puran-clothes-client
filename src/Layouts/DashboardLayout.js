@@ -14,8 +14,10 @@ const DashboardLayout = () => {
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
+
+                    <label htmlFor="my-drawer-2" className="btn btn-base border-0 m-10 bg-orange-400 drawer-button lg:hidden">Sidebar</label>
+
                     <Outlet></Outlet>
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                 </div>
                 <div className="drawer-side ">
@@ -24,7 +26,7 @@ const DashboardLayout = () => {
 
                         {/* admin  */}
                         {
-                            role.isAdmin ? <>
+                            role?.isAdmin ? <>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/allseller'>All Seller</Link></li>
 
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
@@ -37,7 +39,7 @@ const DashboardLayout = () => {
                         {/* seller  */}
 
                         {
-                            (!role.isAdmin && role.role === 'Seller') &&
+                            (!role?.isAdmin && role?.role === 'Seller') &&
                             <>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/addProduct'>Add product</Link></li>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/myproduct'>My products</Link></li>
@@ -47,7 +49,7 @@ const DashboardLayout = () => {
                         {/* buyer  */}
                         {
 
-                            !role.isAdmin && role.role === 'User' &&
+                            !role?.isAdmin && role?.role === 'User' &&
                             <>
                                 <li className='bg-orange-200 rounded-lg mb-2'><Link to='/dashboard/myorders'>My orders</Link></li>
                             </>
