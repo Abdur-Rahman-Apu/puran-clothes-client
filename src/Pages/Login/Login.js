@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import google from '../../Assets/Google logo/google.svg'
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import Loading from '../Loading/Loading';
+import useToken from '../customHook/useToken';
 
 
 const Login = () => {
@@ -16,9 +17,17 @@ const Login = () => {
 
     const navigate = useNavigate()
 
+    const [signedEmail, setSignedEmail] = useState('')
+
+    const [token] = useToken(signedEmail)
+
     const from = location?.state?.from?.pathname || '/'
 
 
+
+    if (token) {
+        navigate(from, { replace: true })
+    }
     const handleLogIn = data => {
         fetch(`http://localhost:5000/users?email=${data.email}&role=${data.userType}`)
             .then(res => res.json())
@@ -28,7 +37,7 @@ const Login = () => {
                         .then(result => {
                             const user = result.user;
                             console.log(user);
-
+                            setSignedEmail(data.email)
                             toast.success("Log in successfully")
                         })
                         .catch(error => {

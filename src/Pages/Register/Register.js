@@ -1,18 +1,28 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import useToken from '../customHook/useToken';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { user, createUser, updateUserProfile } = useContext(AuthContext)
+    const { createUser, updateUserProfile } = useContext(AuthContext)
+
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+
+    const [token] = useToken(createdUserEmail)
+
+    const navigate = useNavigate()
 
     const imgHostKey = process.env.REACT_APP_imgKey;
     // console.log(imgHostKey);
 
 
+    if (token) {
+        navigate('/')
+    }
 
     const handleRegister = data => {
         console.log(data);
@@ -66,8 +76,12 @@ const Register = () => {
                                     })
                                         .then(res => res.json())
                                         .then(data => {
+
+                                            setCreatedUserEmail(email)
+
                                             console.log(data);
-                                            toast.success(`Data is added successfully`)
+
+
 
                                         })
                                         .catch(error => {
@@ -86,6 +100,19 @@ const Register = () => {
                 }
             })
     }
+
+    // const getToken = email => {
+    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data.accessToken) {
+    //                 localStorage.setItem('clotheToken', data.accessToken)
+    //                 toast.success(`Data is added successfully`)
+    //                 navigate('/')
+    //             }
+    //         })
+    //         .catch(error => toast.error("Something went wrong"))
+    // }
     return (
         <div>
 
