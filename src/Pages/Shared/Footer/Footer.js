@@ -27,8 +27,8 @@ const Footer = () => {
                 </div>
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
-                <div className="items-center grid-flow-col">
-                    <img src='./Logo.png' className="mr-3 md:h-10 sm:h-16 rounded-lg" alt="Logo" />
+                <div className="items-center sm:grid-flow-col">
+                    <img src='./Logo.png' className="mr-3 md:h-10 h-10 rounded-lg" alt="Logo" />
                     <p>Puran Clothes Ltd. <br />Copyright &copy; 2022</p>
                 </div>
                 <div className="md:place-self-center md:justify-self-end">
