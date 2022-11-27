@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { user, logIn, isLoading, googleLogIn } = useContext(AuthContext)
+    const { user, logIn, isLoading, googleLogIn, resetPassword } = useContext(AuthContext)
 
     const location = useLocation()
 
@@ -79,22 +79,44 @@ const Login = () => {
             })
             .catch(error => toast.error("Something went wrong"))
     }
+
+    //forget password
+    const handleResetPassword = (event) => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form?.modalEmail?.value;
+
+        if (email) {
+            resetPassword(email)
+                .then(() => {
+                    toast.success("Check your email to reset password")
+
+                })
+                .catch(error => {
+                    toast.error("Unsuccessfully, password is not reset. please check your email")
+                })
+        } else {
+            toast.error("Please enter your email to reset password")
+        }
+        form.reset()
+
+    }
     return (
         <div>
             <div className='flex justify-center my-10'>
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-                    <form onSubmit={handleSubmit(handleLogIn)} class="space-y-6" action="#">
-                        <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to Puran Clothe</h5>
+                <div className="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <form onSubmit={handleSubmit(handleLogIn)} className="space-y-6" >
+                        <h5 className="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to Puran Clothe</h5>
                         <div>
-                            <label htmlFor="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
                             {/* input  */}
-                            <input {...register("email", { required: true })} aria-invalid={errors.email ? "true" : "false"} type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="abdur@gmail.com" />
+                            <input {...register("email", { required: true })} aria-invalid={errors.email ? "true" : "false"} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="abdur@gmail.com" />
                             {/* error  */}
                             {errors.email?.type === 'required' && <p className='text-red-400' role="alert">Email is required</p>}
                         </div>
                         <div>
-                            <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-                            <input {...register("password", { required: { value: true, message: "Password is required" }, minLength: { value: 6, message: "Password must be 6 characters length" } })} type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
+                            <input {...register("password", { required: { value: true, message: "Password is required" }, minLength: { value: 6, message: "Password must be 6 characters length" } })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
                             {errors.password && <p className='text-red-400' role="alert">{errors.password.message}</p>}
                         </div>
 
@@ -108,18 +130,27 @@ const Login = () => {
 
                             {errors.userType && <span className='text-red-400' role="alert">This field is required</span>}
                         </div>
-                        <div class="flex items-start">
-                            <button class=" text-sm text-orange-700 hover:underline dark:text-orange-500">Lost Password?</button>
+
+                        {/* lost password  */}
+                        <div className="flex items-start">
+                            <label htmlFor="my-modal-3" className=" text-sm text-orange-700 hover:underline dark:text-orange-500">Lost Password?</label>
+
+
                         </div>
-                        <button type="submit" class="w-full text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Login to your account</button>
-                        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                            Not registered? <Link to="/register" class="text-orange-700 hover:underline dark:text-orange-500">Create account</Link>
+
+                        {/* lost password end  */}
+
+                        <div>
+                            <button type="submit" className="w-full text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Login to your account</button>
+                        </div>
+                        <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                            Not registered? <Link to="/register" className="text-orange-700 hover:underline dark:text-orange-500">Create account</Link>
                         </div>
                     </form>
 
                     <div
-                        class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                        <p class="text-center font-semibold mx-4 mb-0">OR</p>
+                        className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
+                        <p className="text-center font-semibold mx-4 mb-0">OR</p>
                     </div>
 
                     <button onClick={handleGoogleLogIn} className='text-center w-full card flex-row h-11  bg-base-100 border shadow-lg justify-center items-center'>
@@ -128,6 +159,28 @@ const Login = () => {
 
                     </button>
                 </div>
+            </div>
+
+            {/* start modal  */}
+            <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+
+            {/* modall body   */}
+            <div className="modal">
+
+                <div className="modal-box relative">
+                    <h3 className='text-lg font-bold my-4'>Reset password</h3>
+                    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+
+                    <form onSubmit={handleResetPassword}>
+                        <div>
+                            <label htmlFor="modalEmail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email" id="modalEmail" name='modalEmail' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Enter your email' required />
+
+                            <input className='btn btn-sm border-0 my-4 bg-orange-400' type="submit" value="Reset" />
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     );
