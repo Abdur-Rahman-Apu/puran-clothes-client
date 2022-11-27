@@ -31,7 +31,11 @@ const Login = () => {
     }
     const handleLogIn = data => {
         setLoad(true)
-        fetch(`http://localhost:5000/users?email=${data.email}&role=${data.userType}`)
+        fetch(`http://localhost:5000/users?email=${data.email}&role=${data.userType}`, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('clotheToken')}`
+            }
+        })
             .then(res => res.json())
             .then(serverData => {
                 if (serverData.isFound === 'Yes') {

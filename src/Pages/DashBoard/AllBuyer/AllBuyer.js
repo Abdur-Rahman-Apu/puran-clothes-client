@@ -17,7 +17,11 @@ const AllBuyer = () => {
     //Api call using axios (1)
 
     useEffect(() => {
-        axios.get('http://localhost:5000/allBuyers')
+        axios.get('http://localhost:5000/allBuyers', {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('clotheToken')}`
+            }
+        })
             .then(res => {
                 setBuyers(res.data)
             })

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const Category = ({ category }) => {
-    const { categoryId, categoryName, categoryImage } = category;
+    const { categoryId, categoryName, categoryImage, description } = category;
 
     return (
         <div className="card mx-3 my-3 bg-base-100 shadow-xl">
@@ -12,7 +12,7 @@ const Category = ({ category }) => {
                     {categoryName}
 
                 </h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <p>{description}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/category/${categoryId}`}>
                         <button className='btn bg-orange-400 border-0'>Explore</button>

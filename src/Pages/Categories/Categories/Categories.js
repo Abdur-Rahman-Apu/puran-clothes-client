@@ -25,7 +25,7 @@ const Categories = () => {
     return (
         <div>
             <div className="title">
-                <h1 className='text-3xl font-bold my-10 mx-7'>Categories</h1>
+                <h1 className='text-3xl font-bold my-16 mx-7 text-center'>Categories</h1>
             </div>
 
             <div className='grid sm:grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 mx-8 my-10'>

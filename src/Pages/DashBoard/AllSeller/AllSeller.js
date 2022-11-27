@@ -9,7 +9,11 @@ const AllSeller = () => {
     const { isLoading, data: sellers = [], refetch } = useQuery({
         queryKey: ['allSellers'],
         queryFn: async () => {
-            const result = await fetch('http://localhost:5000/allSellers')
+            const result = await fetch('http://localhost:5000/allSellers', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
             const data = result.json()
             return data
         }
@@ -37,7 +41,10 @@ const AllSeller = () => {
     // verify status 
     const handleVerify = email => {
         fetch(`http://localhost:5000/verifyStatus?email=${email}`, {
-            method: 'PATCH'
+            method: 'PATCH',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('clotheToken')}`
+            }
         })
             .then(res => {
                 if (res.status === 200) {

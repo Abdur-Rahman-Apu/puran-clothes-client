@@ -7,7 +7,11 @@ const useRole = (email) => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/role?email=${email}`)
+            fetch(`http://localhost:5000/role?email=${email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
