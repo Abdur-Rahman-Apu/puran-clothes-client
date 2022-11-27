@@ -92,6 +92,10 @@ const Myorders = () => {
                                                 <button className="btn bg-blue-400 border-0 btn-sm">Pay</button>
                                             </Link>
                                         }
+
+                                        {
+                                            order.paid ? <p className='text-green-600 font-bold text-base'>Paid</p> : ''
+                                        }
                                     </td>
                                     <th>
                                         <button onClick={() => handleDelete(order._id)} className="btn bg-red-400 border-0 btn-sm">Delete</button>

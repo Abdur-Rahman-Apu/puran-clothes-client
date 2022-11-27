@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ booking }) => {
 
-    const { price, buyerEmail, sellerEmail, productName } = booking;
+    const { _id, price, buyerName, buyerEmail, sellerEmail, productName, productId } = booking;
     console.log("booking", productName, sellerEmail);
     const stripe = useStripe();
     const elements = useElements();
@@ -84,7 +85,35 @@ const CheckoutForm = ({ booking }) => {
             setSuccess('Payment is Completed successfully')
             setTransactionId(paymentIntent.id)
 
-            //store payment info in the databases
+            //Store info in the db
+
+            const paymentData = {
+                productName,
+                price,
+                buyerEmail,
+                buyerName,
+                transactionId: paymentIntent.id,
+                bookingId: _id,
+                productId
+
+            }
+
+            fetch('http://localhost:5000/payments', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    // authorization: `bearer ${localStorage.getItem('doctorToken')}`
+                },
+                body: JSON.stringify(paymentData)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        toast.success("Your payment info is stored")
+                        setSuccess('Congrats! Your payment is completed')
+                        setTransactionId(paymentIntent.id)
+                    }
+                })
 
         }
 

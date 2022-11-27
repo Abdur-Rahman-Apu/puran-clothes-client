@@ -1,7 +1,11 @@
 import React from 'react';
 
 const AdvertisedProduct = ({ product }) => {
-    const { image, resalePrice, location, productName } = product;
+    const { image, resalePrice, location, productName, saleStatus } = product;
+
+    if (saleStatus === 'Sold') {
+        return;
+    }
     return (
         <div className="card  bg-base-100 shadow-xl">
             <figure><img src={image} alt="advertise img" /></figure>

@@ -4,6 +4,7 @@ import google from '../../Assets/Google logo/google.svg'
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import Loading from '../Loading/Loading';
 
 
 const Login = () => {
@@ -100,6 +101,10 @@ const Login = () => {
         }
         form.reset()
 
+    }
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
     return (
         <div>

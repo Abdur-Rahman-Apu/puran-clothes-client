@@ -79,6 +79,10 @@ const Product = ({ product, setClothe }) => {
             .catch(error => toast.error(error.message))
     }
 
+    if (saleStatus === 'Sold') {
+        return
+    }
+
     return (
 
         <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 relative">

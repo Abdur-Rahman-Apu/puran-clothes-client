@@ -115,7 +115,7 @@ const MyProduct = () => {
                                     <td>{product.saleStatus}</td>
 
                                     <td>
-                                        <button disabled={product.advertise && product.saleStatus === 'Available'} onClick={() => { handleAdvertise(product._id) }} className="btn btn-xs bg-yellow-500 border-0">Advertise</button>
+                                        <button disabled={product.advertise} onClick={() => { handleAdvertise(product._id) }} className="btn btn-xs bg-yellow-500 border-0">Advertise</button>
                                     </td>
 
                                     <th>
