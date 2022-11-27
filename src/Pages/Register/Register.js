@@ -6,11 +6,13 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import useToken from '../customHook/useToken';
 import Loading from '../Loading/Loading';
 import Logo from '../../Assets/Logo/Logo.png'
+import google from '../../Assets/Google logo/google.svg'
+
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const { createUser, updateUserProfile, googleLogIn } = useContext(AuthContext)
 
     const [createdUserEmail, setCreatedUserEmail] = useState('')
 

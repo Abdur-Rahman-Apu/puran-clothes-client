@@ -3,10 +3,13 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import Loading from '../../../Loading/Loading';
 import AdvertisedProduct from '../AdvertisedProduct/AdvertisedProduct';
-
+import BookModal from '../../../Products/BookModal/BookModal';
+import Product from '../../../Products/Product/Product'
 const Advertise = () => {
 
     const { user } = useContext(AuthContext)
+
+    const [clothe, setClothe] = useState(null)
 
 
 
@@ -36,9 +39,23 @@ const Advertise = () => {
                 <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10'>
                     {
                         advertisedProducts.map((product, index) =>
-                            <AdvertisedProduct key={index} product={product}></AdvertisedProduct>
+                            <Product key={index} product={product} setClothe={setClothe}></Product>
                         )
                     }
+                </div>
+                <div>
+
+
+                    {
+                        clothe &&
+                        <BookModal
+                            product={clothe}
+                            setClothe={setClothe}
+                            user={user}
+                        ></BookModal>
+                    }
+
+
                 </div>
             </div>
         );

@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import Loading from '../Loading/Loading';
 import useToken from '../customHook/useToken';
 import Logo from '../../Assets/Logo/Logo.png'
+import { useQuery } from '@tanstack/react-query';
 
 
 const Login = () => {
@@ -63,39 +64,61 @@ const Login = () => {
             })
     }
 
+
+    // get all users 
+    const { data: allUsers = [], refetch } = useQuery({
+        queryKey: ['allUsers'],
+        queryFn: async () => {
+            const result = await fetch(`http://localhost:5000/allusers`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
+            const data = await result.json()
+            return data;
+        }
+    })
+
+    // google log in 
     const handleGoogleLogIn = () => {
         googleLogIn()
             .then(result => {
                 const user = result.user;
                 console.log(user);
 
-                const registeredUser = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    image: user?.photoURL,
-                    isAdmin: 0,
-                    role: 'User',
-                    verified: 0,
-                    user
+                const search = allUsers.find(buyer => buyer?.email === user?.email)
+
+                if (!search) {
+
+                    const registeredUser = {
+                        name: user?.displayName,
+                        email: user?.email,
+                        image: user?.photoURL,
+                        isAdmin: 0,
+                        role: 'User',
+                        verified: 0,
+                        user
+                    }
+
+                    fetch(`http://localhost:5000/users`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            // authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                        },
+                        body: JSON.stringify(registeredUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            setSignedEmail(user?.email)
+                            toast.success(`Data is added successfully`)
+
+                        })
+                        .catch(error => {
+                            toast.error(error.message)
+                        })
                 }
-
-                fetch(`http://localhost:5000/users`, {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                        // authorization: `bearer ${localStorage.getItem('clotheToken')}`
-                    },
-                    body: JSON.stringify(registeredUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        toast.success(`Data is added successfully`)
-
-                    })
-                    .catch(error => {
-                        toast.error(error.message)
-                    })
 
             })
             .catch(error => toast.error("Something went wrong"))

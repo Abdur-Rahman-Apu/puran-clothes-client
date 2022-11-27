@@ -30,7 +30,7 @@ const Stats = () => {
     })
     // payments 
     const { data: payments = [] } = useQuery({
-        queryKey: ['allBuyers'],
+        queryKey: ['payments'],
         queryFn: async () => {
             const response = await fetch(`http://localhost:5000/payments`, {
                 headers: {

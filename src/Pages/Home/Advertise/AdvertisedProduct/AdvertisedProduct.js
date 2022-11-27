@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdvertisedProduct = ({ product }) => {
+const AdvertisedProduct = ({ product, setClothe }) => {
     const { image, resalePrice, location, productName, saleStatus } = product;
 
     if (saleStatus === 'Sold') {
