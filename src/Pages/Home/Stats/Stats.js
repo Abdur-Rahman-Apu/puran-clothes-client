@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Loading/Loading';
 
@@ -20,6 +20,21 @@ const Stats = () => {
             return data;
         }
     })
+    // payments 
+    const { data: payments = [] } = useQuery({
+        queryKey: ['allBuyers'],
+        queryFn: async () => {
+            const response = await fetch(`http://localhost:5000/payments`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
+            const data = response.json()
+            return data;
+        }
+    })
+
+
 
     console.log("buyers", buyers);
     console.log("sellers", sellers);
@@ -38,7 +53,7 @@ const Stats = () => {
 
                     </div>
                     <div className="stat-title text-center">Orders Completed</div>
-                    <div className="stat-value text-center">31K</div>
+                    <div className="stat-value text-center">{payments.length}</div>
 
                 </div>
 
