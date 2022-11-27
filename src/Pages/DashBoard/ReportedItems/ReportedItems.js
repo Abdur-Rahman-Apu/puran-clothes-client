@@ -8,7 +8,11 @@ const ReportedItems = () => {
     const { isLoading, data: reportedItems = [], refetch } = useQuery({
         queryKey: ['reportedItems'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/reportedItems`)
+            const response = await fetch(`http://localhost:5000/reportedItems`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
             const data = response.json()
             return data;
         }

@@ -7,7 +7,11 @@ const Stats = () => {
     const { isLoading, data: sellers = [] } = useQuery({
         queryKey: ['allSellers'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/allSellers`)
+            const response = await fetch(`http://localhost:5000/allSellers`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
             const data = response.json()
             return data;
         }
@@ -15,7 +19,11 @@ const Stats = () => {
     const { data: buyers = [] } = useQuery({
         queryKey: ['allBuyers'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/allBuyers`)
+            const response = await fetch(`http://localhost:5000/allBuyers`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
             const data = response.json()
             return data;
         }
