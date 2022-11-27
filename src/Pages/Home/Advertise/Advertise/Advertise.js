@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
+import Loading from '../../../Loading/Loading';
 import AdvertisedProduct from '../AdvertisedProduct/AdvertisedProduct';
 
 const Advertise = () => {
@@ -12,11 +13,19 @@ const Advertise = () => {
     const { isLoading, refetch, data: advertisedProducts = [] } = useQuery({
         queryKey: ['myproduct'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allAdvertiseProducts`)
+            const res = await fetch(`http://localhost:5000/allAdvertiseProducts`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
             const data = res.json()
             return data;
         }
     })
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
 
     if (advertisedProducts.length) {

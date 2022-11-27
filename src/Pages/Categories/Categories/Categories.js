@@ -8,7 +8,11 @@ const Categories = () => {
     const { data: categories = [], refetch, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const result = await fetch(`http://localhost:5000/categories`)
+            const result = await fetch(`http://localhost:5000/categories`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                }
+            })
             const data = await result.json()
             return data;
         }

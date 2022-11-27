@@ -6,6 +6,7 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import Loading from '../Loading/Loading';
 import useToken from '../customHook/useToken';
+import Logo from '../../Assets/Logo/Logo.png'
 
 
 const Login = () => {
@@ -23,12 +24,13 @@ const Login = () => {
 
     const from = location?.state?.from?.pathname || '/'
 
-
+    const [load, setLoad] = useState(false)
 
     if (token) {
         navigate(from, { replace: true })
     }
     const handleLogIn = data => {
+        setLoad(true)
         fetch(`http://localhost:5000/users?email=${data.email}&role=${data.userType}`)
             .then(res => res.json())
             .then(serverData => {
@@ -38,6 +40,7 @@ const Login = () => {
                             const user = result.user;
                             console.log(user);
                             setSignedEmail(data.email)
+                            setLoad(false)
                             toast.success("Log in successfully")
                         })
                         .catch(error => {
@@ -72,7 +75,8 @@ const Login = () => {
                 fetch(`http://localhost:5000/users`, {
                     method: 'POST',
                     headers: {
-                        'content-type': 'application/json'
+                        'content-type': 'application/json',
+                        // authorization: `bearer ${localStorage.getItem('clotheToken')}`
                     },
                     body: JSON.stringify(registeredUser)
                 })
@@ -112,7 +116,7 @@ const Login = () => {
 
     }
 
-    if (isLoading) {
+    if (isLoading || load) {
         return <Loading></Loading>
     }
     return (
@@ -120,6 +124,9 @@ const Login = () => {
             <div className='flex justify-center my-10'>
                 <div className="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <form onSubmit={handleSubmit(handleLogIn)} className="space-y-6" >
+                        <div className='flex justify-center'>
+                            <img className='h-16' src={Logo} alt="logo" />
+                        </div>
                         <h5 className="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to Puran Clothe</h5>
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>

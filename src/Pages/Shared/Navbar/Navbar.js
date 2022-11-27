@@ -78,7 +78,7 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <div className="navbar-end items-start flex-col xs:flex-row xs:items-center">
+                <div className="navbar-end items-start flex-col xs:flex-row xs:items-center xs:mt-2">
 
 
                     {
@@ -91,7 +91,7 @@ const Navbar = () => {
                                         <img src={user?.photoURL} alt="user img" />
                                     </div>
                                 </div>
-                                <p className='hidden md:visible mr-3 font-bold sm:hidden'>
+                                <p className='hidden md:block mr-3 font-bold sm:hidden'>
                                     {user?.displayName}
                                 </p>
 

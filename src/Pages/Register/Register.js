@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import useToken from '../customHook/useToken';
+import Loading from '../Loading/Loading';
+import Logo from '../../Assets/Logo/Logo.png'
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -16,6 +18,8 @@ const Register = () => {
 
     const navigate = useNavigate()
 
+    const [loading, setLoading] = useState(false);
+
     const imgHostKey = process.env.REACT_APP_imgKey;
     // console.log(imgHostKey);
 
@@ -25,6 +29,7 @@ const Register = () => {
     }
 
     const handleRegister = data => {
+        setLoading(true)
         console.log(data);
 
         const image = data.img[0]
@@ -70,7 +75,8 @@ const Register = () => {
                                     fetch(`http://localhost:5000/users`, {
                                         method: 'POST',
                                         headers: {
-                                            'content-type': 'application/json'
+                                            'content-type': 'application/json',
+                                            authorization: `bearer ${localStorage.getItem('clotheToken')}`
                                         },
                                         body: JSON.stringify(registeredUser)
                                     })
@@ -81,8 +87,8 @@ const Register = () => {
 
                                             console.log(data);
 
-
-
+                                            setLoading(false)
+                                            toast.success('Registered successfully')
                                         })
                                         .catch(error => {
                                             toast.error(error.message)
@@ -101,25 +107,20 @@ const Register = () => {
             })
     }
 
-    // const getToken = email => {
-    //     fetch(`http://localhost:5000/jwt?email=${email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.accessToken) {
-    //                 localStorage.setItem('clotheToken', data.accessToken)
-    //                 toast.success(`Data is added successfully`)
-    //                 navigate('/')
-    //             }
-    //         })
-    //         .catch(error => toast.error("Something went wrong"))
-    // }
+
+
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div>
-
-
             <div className='flex justify-center my-10'>
                 <div className="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <form onSubmit={handleSubmit(handleRegister)} className="space-y-6" >
+
+                        <div className='flex justify-center'>
+                            <img className='h-16' src={Logo} alt="logo" />
+                        </div>
                         <h5 className="text-xl text-center font-medium text-gray-900 dark:text-white">Register to Puran clothes</h5>
 
                         <div>

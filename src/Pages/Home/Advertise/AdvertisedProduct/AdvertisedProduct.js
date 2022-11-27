@@ -7,7 +7,7 @@ const AdvertisedProduct = ({ product }) => {
         return;
     }
     return (
-        <div className="card  bg-base-100 shadow-xl">
+        <div className="card bg-base-100 shadow-xl my-3">
             <figure><img src={image} alt="advertise img" /></figure>
             <div className="card-body">
                 <h2 className="card-title">
