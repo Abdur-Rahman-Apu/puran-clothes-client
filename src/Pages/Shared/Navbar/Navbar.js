@@ -33,9 +33,9 @@ const Navbar = () => {
 
     </>
     return (
-        <div className='w-100 mx-7'>
+        <div className='w-100 mx-2 xs:mx-7'>
 
-            <div className="navbar flex-col xs:flex-row bg-base-100 shadow-sm">
+            <div className="navbar flex-col items-start xs:flex-row bg-base-100 shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -78,7 +78,7 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <div className="navbar-end items-start flex-col xs:flex-row">
+                <div className="navbar-end items-start flex-col xs:flex-row xs:items-center">
 
 
                     {

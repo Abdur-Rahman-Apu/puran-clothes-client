@@ -8,7 +8,7 @@ const ErrorPage = () => {
             <Navbar></Navbar>
             <div className='flex flex-col justify-center items-center min-h-screen'>
                 <h3 className='text-red-500 font-bold text-2xl'>404</h3>
-                <p>Ooh No! Your searching page is not found</p>
+                <p className='font-bold mx-3 text-center'>Ooh No! Your searching page is not found</p>
             </div>
             <Footer></Footer>
         </div>
