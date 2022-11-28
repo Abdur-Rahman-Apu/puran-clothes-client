@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
+import Loading from '../../../Loading/Loading';
 
 const AddProduct = () => {
 
@@ -22,11 +23,14 @@ const AddProduct = () => {
 
     const postTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 
+    const [loading, setLoading] = useState(false)
 
     const addProduct = data => {
+        setLoading(true)
         const image = data.img[0]
 
         const { category, condition, description, location, originalPrice, phone, productName, resalePrice, yearOfPurchase } = data;
+
 
         const categoryId = parseInt(category)
 
@@ -77,15 +81,20 @@ const AddProduct = () => {
 
                                 toast.success(`Data is added successfully`)
                                 navigate('/dashboard/myproduct')
+                                setLoading(false)
                             }
                         })
                         .catch(error => {
                             toast.error(error.message)
+                            setLoading(false)
                         })
                 }
             })
     }
 
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div>
