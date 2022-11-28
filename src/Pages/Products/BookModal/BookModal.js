@@ -1,54 +1,78 @@
 
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const BookModal = ({ product, setClothe, user }) => {
 
-
-
-
-
     const { _id, productName, image, resalePrice, sellerName, sellerEmail } = product;
     console.log(product);
 
-    const handleBooking = (event) => {
-        event.preventDefault()
-        const form = event.target;
-        const phone = form.phone.value;
-        const meetingPlace = form.meeting.value;
-        console.log(phone, meetingPlace);
 
-        const bookProduct = {
-            productName,
-            productImage: image,
-            sellerName,
-            sellerEmail,
-            price: resalePrice,
-            buyerEmail: user?.email,
-            buyerName: user?.displayName,
-            phone,
-            meetingPlace,
-            productId: _id,
-            paid: 0
-        }
 
-        fetch('http://localhost:5000/bookings', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(bookProduct)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    console.log(data);
-                    setClothe(null)
-                    toast.success("Booking is confirmed")
-                } else {
-                    toast.error(data.message)
+    const { data: buyerBook = [], refetch, isLoading } = useQuery({
+        queryKey: ['buyerBook',],
+        queryFn: async () => {
+            const result = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
             })
+            const data = await result.json()
+            return data;
+        }
+    })
+
+
+
+    const handleBooking = (event) => {
+        event.preventDefault()
+
+
+        const searchBookedProduct = buyerBook.find(product => product.productId === _id)
+
+        console.log(searchBookedProduct);
+        if (!searchBookedProduct) {
+
+            const form = event.target;
+            const phone = form.phone.value;
+            const meetingPlace = form.meeting.value;
+            console.log(phone, meetingPlace);
+
+            const bookProduct = {
+                productName,
+                productImage: image,
+                sellerName,
+                sellerEmail,
+                price: resalePrice,
+                buyerEmail: user?.email,
+                buyerName: user?.displayName,
+                phone,
+                meetingPlace,
+                productId: _id,
+                paid: 0
+            }
+
+            fetch('http://localhost:5000/bookings', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(bookProduct)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        console.log(data);
+                        setClothe(null)
+                        toast.success("Booking is confirmed")
+                    } else {
+                        toast.error(data.message)
+                    }
+                })
+        } else {
+            toast.error("You already booked same product")
+        }
 
     }
     return (

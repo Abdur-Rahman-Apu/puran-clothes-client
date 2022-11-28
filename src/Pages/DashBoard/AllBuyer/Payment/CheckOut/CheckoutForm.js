@@ -7,6 +7,8 @@ const CheckoutForm = ({ booking }) => {
 
     const { _id, price, buyerName, buyerEmail, sellerEmail, productName, productId } = booking;
     console.log("booking", productName, sellerEmail);
+
+
     const stripe = useStripe();
     const elements = useElements();
 
