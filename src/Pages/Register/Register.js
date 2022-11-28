@@ -27,6 +27,7 @@ const Register = () => {
 
 
     if (token) {
+        setLoading(false)
         navigate('/')
     }
 
@@ -50,6 +51,7 @@ const Register = () => {
                 console.log(imgData);
 
                 if (imgData.success) {
+
                     const registeredUser = {
                         name: name,
                         email: email,

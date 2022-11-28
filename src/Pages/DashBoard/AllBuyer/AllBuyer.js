@@ -34,17 +34,6 @@ const AllBuyer = () => {
     // const [allUsers, setAllUsers] = useState([])
     const handleDelete = (id) => {
 
-
-
-        // const search = buyers.find(user => user._id === id)
-        // console.log(search.user.uid);
-
-        // console.log(user);
-        // deleteUser(search.user)
-        //     .then(() => { console.log("Success"); })
-        //     .catch(error => console.log(error))
-        // console.log(id);
-
         fetch(`http://localhost:5000/allusers/${id}`, {
             method: 'DELETE',
 
@@ -52,6 +41,19 @@ const AllBuyer = () => {
             .then((res) => {
                 if (res.status === 200) {
                     toast.success("Deleted Successfully")
+
+                    axios.get('http://localhost:5000/allBuyers', {
+                        headers: {
+                            authorization: `bearer ${localStorage.getItem('clotheToken')}`
+                        }
+                    })
+                        .then(res => {
+                            setBuyers(res.data)
+                        })
+                        .catch(error => {
+                            toast.error("Can not get data")
+                        })
+
                 }
             })
             .catch(error => {
