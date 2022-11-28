@@ -32,11 +32,7 @@ const Login = () => {
     }
     const handleLogIn = data => {
         setLoad(true)
-        fetch(`https://puranclothes.vercel.app/users?email=${data.email}&role=${data.userType}`, {
-            headers: {
-                authorization: `bearer ${localStorage.getItem('clotheToken')}`
-            }
-        })
+        fetch(`https://puranclothes.vercel.app/users?email=${data.email}&role=${data.userType}`)
             .then(res => res.json())
             .then(serverData => {
                 if (serverData.isFound === 'Yes') {
@@ -45,6 +41,7 @@ const Login = () => {
                             const user = result.user;
                             console.log(user);
                             setSignedEmail(data.email)
+
                             setLoad(false)
                             toast.success("Log in successfully")
                         })
