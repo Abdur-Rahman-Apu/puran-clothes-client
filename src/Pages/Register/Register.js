@@ -62,6 +62,8 @@ const Register = () => {
                         verified: 0
                     }
 
+                    console.log(registeredUser);
+
                     createUser(email, password)
                         .then(result => {
                             const user = result.user;
@@ -78,7 +80,9 @@ const Register = () => {
                                     toast.success('User registered in successfully')
                                     fetch(`https://puranclothes.vercel.app/users`, {
                                         method: 'POST',
-
+                                        headers: {
+                                            'content-type': 'application/json',
+                                        },
                                         body: JSON.stringify(registeredUser)
                                     })
                                         .then(res => res.json())
