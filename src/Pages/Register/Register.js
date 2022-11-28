@@ -78,10 +78,7 @@ const Register = () => {
                                     toast.success('User registered in successfully')
                                     fetch(`https://puranclothes.vercel.app/users`, {
                                         method: 'POST',
-                                        headers: {
-                                            'content-type': 'application/json',
-                                            authorization: `bearer ${localStorage.getItem('clotheToken')}`
-                                        },
+
                                         body: JSON.stringify(registeredUser)
                                     })
                                         .then(res => res.json())
