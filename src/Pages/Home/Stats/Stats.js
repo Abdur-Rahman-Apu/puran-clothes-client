@@ -7,7 +7,7 @@ const Stats = () => {
     const { isLoading, data: sellers = [] } = useQuery({
         queryKey: ['allSellers'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/allSellers`, {
+            const response = await fetch(`https://puranclothes.vercel.app/allSellers`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
@@ -19,7 +19,7 @@ const Stats = () => {
     const { data: buyers = [] } = useQuery({
         queryKey: ['allBuyers'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/allBuyers`, {
+            const response = await fetch(`https://puranclothes.vercel.app/allBuyers`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
@@ -32,7 +32,7 @@ const Stats = () => {
     const { data: payments = [] } = useQuery({
         queryKey: ['payments'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/payments`, {
+            const response = await fetch(`https://puranclothes.vercel.app/payments`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }

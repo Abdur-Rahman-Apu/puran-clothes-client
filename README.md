@@ -3,7 +3,7 @@
 This website is a shopping related website where the user can buy second hand clothes for man,woman and child.
 
 
-### Live website link: [https://housechef-809d4.web.app](https://housechef-809d4.web.app)
+### Live website link: [https://puran-clothes.web.app](https://puran-clothes.web.app)
 
 
 

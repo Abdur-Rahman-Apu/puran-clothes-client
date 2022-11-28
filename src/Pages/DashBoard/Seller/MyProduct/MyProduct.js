@@ -11,7 +11,7 @@ const MyProduct = () => {
     const { isLoading, refetch, data: myProducts = [] } = useQuery({
         queryKey: ['myproduct'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`, {
+            const res = await fetch(`https://puranclothes.vercel.app/myproduct?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
@@ -28,7 +28,7 @@ const MyProduct = () => {
     //delete product
     const handleDelete = id => {
 
-        fetch(`http://localhost:5000/deleteProducts/${id}`, {
+        fetch(`https://puranclothes.vercel.app/deleteProducts/${id}`, {
             method: 'DELETE',
 
         })
@@ -47,7 +47,7 @@ const MyProduct = () => {
 
 
     const handleAdvertise = id => {
-        fetch(`http://localhost:5000/updateAdvertise/${id}`, {
+        fetch(`https://puranclothes.vercel.app/updateAdvertise/${id}`, {
             method: 'PATCH'
         })
             .then((data) => {

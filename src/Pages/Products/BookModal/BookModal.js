@@ -13,7 +13,7 @@ const BookModal = ({ product, setClothe, user }) => {
     const { data: buyerBook = [], refetch, isLoading } = useQuery({
         queryKey: ['buyerBook',],
         queryFn: async () => {
-            const result = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+            const result = await fetch(`https://puranclothes.vercel.app/bookings?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
@@ -53,7 +53,7 @@ const BookModal = ({ product, setClothe, user }) => {
                 paid: 0
             }
 
-            fetch('http://localhost:5000/bookings', {
+            fetch('https://puranclothes.vercel.app/bookings', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

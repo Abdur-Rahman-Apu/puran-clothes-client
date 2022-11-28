@@ -76,7 +76,7 @@ const Register = () => {
                             updateUserProfile(profile)
                                 .then(() => {
                                     toast.success('User registered in successfully')
-                                    fetch(`http://localhost:5000/users`, {
+                                    fetch(`https://puranclothes.vercel.app/users`, {
                                         method: 'POST',
                                         headers: {
                                             'content-type': 'application/json',

@@ -26,7 +26,7 @@ const CheckoutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://puranclothes.vercel.app/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(booking),
@@ -101,7 +101,7 @@ const CheckoutForm = ({ booking }) => {
 
             }
 
-            fetch('http://localhost:5000/payments', {
+            fetch('https://puranclothes.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

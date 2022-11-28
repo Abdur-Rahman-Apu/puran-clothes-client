@@ -7,7 +7,7 @@ const useRole = (email) => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/role?email=${email}`, {
+            fetch(`https://puranclothes.vercel.app/role?email=${email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }

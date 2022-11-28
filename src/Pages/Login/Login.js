@@ -32,7 +32,7 @@ const Login = () => {
     }
     const handleLogIn = data => {
         setLoad(true)
-        fetch(`http://localhost:5000/users?email=${data.email}&role=${data.userType}`, {
+        fetch(`https://puranclothes.vercel.app/users?email=${data.email}&role=${data.userType}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('clotheToken')}`
             }
@@ -69,7 +69,7 @@ const Login = () => {
     const { data: allUsers = [], refetch } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const result = await fetch(`http://localhost:5000/allusers`, {
+            const result = await fetch(`https://puranclothes.vercel.app/allusers`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
@@ -100,7 +100,7 @@ const Login = () => {
                         user
                     }
 
-                    fetch(`http://localhost:5000/users`, {
+                    fetch(`https://puranclothes.vercel.app/users`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

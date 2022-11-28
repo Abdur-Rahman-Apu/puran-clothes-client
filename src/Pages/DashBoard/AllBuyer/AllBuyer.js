@@ -17,7 +17,7 @@ const AllBuyer = () => {
     //Api call using axios (1)
 
     useEffect(() => {
-        axios.get('http://localhost:5000/allBuyers', {
+        axios.get('https://puranclothes.vercel.app/allBuyers', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('clotheToken')}`
             }
@@ -34,7 +34,7 @@ const AllBuyer = () => {
     // const [allUsers, setAllUsers] = useState([])
     const handleDelete = (id) => {
 
-        fetch(`http://localhost:5000/allusers/${id}`, {
+        fetch(`https://puranclothes.vercel.app/allusers/${id}`, {
             method: 'DELETE',
 
         })
@@ -42,7 +42,7 @@ const AllBuyer = () => {
                 if (res.status === 200) {
                     toast.success("Deleted Successfully")
 
-                    axios.get('http://localhost:5000/allBuyers', {
+                    axios.get('https://puranclothes.vercel.app/allBuyers', {
                         headers: {
                             authorization: `bearer ${localStorage.getItem('clotheToken')}`
                         }

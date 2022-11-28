@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoutes><Products></Products>,</PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`),
+                loader: ({ params }) => fetch(`https://puranclothes.vercel.app/category/${params.id}`),
             },
 
         ]
@@ -95,7 +95,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`, { headers: { authorization: `bearer ${localStorage.getItem('clotheToken')}` } })
+                loader: ({ params }) => fetch(`https://puranclothes.vercel.app/bookings/${params.id}`, { headers: { authorization: `bearer ${localStorage.getItem('clotheToken')}` } })
             },
 
         ]

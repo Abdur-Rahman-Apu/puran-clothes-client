@@ -16,7 +16,7 @@ const Advertise = () => {
     const { isLoading, refetch, data: advertisedProducts = [] } = useQuery({
         queryKey: ['myproduct'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allAdvertiseProducts`, {
+            const res = await fetch(`https://puranclothes.vercel.app/allAdvertiseProducts`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }

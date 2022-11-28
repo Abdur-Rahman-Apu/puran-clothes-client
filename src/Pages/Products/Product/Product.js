@@ -27,7 +27,7 @@ const Product = ({ product, setClothe }) => {
     // const [searchSeller, setSearchSeller] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:5000/allSellers', {
+        fetch('https://puranclothes.vercel.app/allSellers', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('clotheToken')}`
             }
@@ -69,7 +69,7 @@ const Product = ({ product, setClothe }) => {
             sellerEmail: product.sellerEmail
         }
 
-        fetch(`http://localhost:5000/reportedItems`, {
+        fetch(`https://puranclothes.vercel.app/reportedItems`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

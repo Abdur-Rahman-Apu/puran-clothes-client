@@ -8,7 +8,7 @@ const ReportedItems = () => {
     const { isLoading, data: reportedItems = [], refetch } = useQuery({
         queryKey: ['reportedItems'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/reportedItems`, {
+            const response = await fetch(`https://puranclothes.vercel.app/reportedItems`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('clotheToken')}`
                 }
@@ -23,7 +23,7 @@ const ReportedItems = () => {
 
     const handleDelete = search => {
         console.log(search);
-        fetch(`http://localhost:5000/deleteReportedItems?sellerEmail=${search.sellerEmail}&productName=${search.productName}`, {
+        fetch(`https://puranclothes.vercel.app/deleteReportedItems?sellerEmail=${search.sellerEmail}&productName=${search.productName}`, {
             method: 'DELETE'
         })
             .then(res => {
