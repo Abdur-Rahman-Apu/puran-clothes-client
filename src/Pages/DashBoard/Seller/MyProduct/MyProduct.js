@@ -48,7 +48,10 @@ const MyProduct = () => {
 
     const handleAdvertise = id => {
         fetch(`https://puranclothes.vercel.app/updateAdvertise/${id}`, {
-            method: 'PATCH'
+            method: 'PATCH',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('clotheToken')}`
+            }
         })
             .then((data) => {
                 console.log(data);
