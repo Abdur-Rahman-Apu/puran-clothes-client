@@ -15,6 +15,8 @@ const Product = ({ product, setClothe }) => {
 
     const { _id, productName, image, location, originalPrice, resalePrice, postTime, sellerName, verified, yearOfPurchase, description, condition, saleStatus, phone } = product;
 
+    console.log(verified);
+
     const nowYear = new Date().getFullYear()
 
     const yearOfUse = nowYear - yearOfPurchase

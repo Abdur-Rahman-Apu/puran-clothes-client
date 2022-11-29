@@ -41,14 +41,14 @@ const AllSeller = () => {
     // verify status 
     const handleVerify = email => {
         fetch(`https://puranclothes.vercel.app/verifyStatus?email=${email}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('clotheToken')}`
             }
         })
             .then(res => {
                 if (res.status === 200) {
-                    toast.success("Verified successfullyl");
+                    toast.success("Verified successfully");
                     refetch()
                 }
             })
