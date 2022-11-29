@@ -46,3 +46,9 @@ This website is a shopping related website where the user can buy second hand cl
 * ImageBB for hosting image
 * Mongodb for backend
 
+
+## To check admin routes
+
+* adminEmail: abdurrahman@gmail.com
+
+* adminPassword: 123456
