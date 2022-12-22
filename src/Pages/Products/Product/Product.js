@@ -42,7 +42,7 @@ const Product = ({ product, setClothe }) => {
             })
     }, [])
 
-    console.log(sellers);
+
 
 
 

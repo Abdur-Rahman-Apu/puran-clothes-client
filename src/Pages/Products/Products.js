@@ -19,6 +19,8 @@ const Products = () => {
         return <Loading></Loading>
     }
 
+    console.log(products.length);
+
     return (
         <div>
             <h1 className='text-3xl font-bold text-center my-6'>Products</h1>
@@ -29,7 +31,7 @@ const Products = () => {
                         products.map(product => <Product key={product._id} product={product} setClothe={setClothe}></Product>)
                         :
                         <div>
-                            <h1 className='text-xl my-10 font-bold'>No products are available right now</h1>
+                            <h1 className='text-xl my-10 font-bold text-orange-400 text-center'>No products are available right now</h1>
                         </div>
                 }
             </div>
