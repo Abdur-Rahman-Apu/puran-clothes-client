@@ -23,18 +23,12 @@ const Product = ({ product, setClothe }) => {
 
     const [role] = useRole(user?.email)
 
-    // console.log(role);
-    // console.log(role.role);
-    // console.log(typeof user?.email)
-    // console.log(user.email);
-    // console.log((user?.email ? 1 : 0));
-    // console.log(role?.role === 'Seller' && (user?.email ? 1 : 0));
     console.log(user?.email ? 1 : 0);
     console.log((role?.role === 'Seller' && (user?.email ? 1 : 0)) || (user?.email ? 1 : 0));
 
 
     const [sellers, setSellers] = useState([])
-    // const [searchSeller, setSearchSeller] = useState('')
+
 
     useEffect(() => {
         fetch('https://puranclothes.vercel.app/allSellers', {
@@ -51,23 +45,7 @@ const Product = ({ product, setClothe }) => {
 
     console.log(sellers);
 
-    // const searchVerified = sellers.find(seller => seller.sellerName === sellerName)
-    // console.log(searchVerified);
 
-
-
-
-
-    // format date 
-    // const options = {
-
-    //     year: 'numeric',
-    //     month: 'short',
-    //     day: 'numeric'
-    // };
-
-    // const postedTime = postTime.toLocaleDateString('en-us', options)
-    // console.log(postTime.toLocaleDateString('en-us', options));
 
 
     const handleReportedItems = id => {
