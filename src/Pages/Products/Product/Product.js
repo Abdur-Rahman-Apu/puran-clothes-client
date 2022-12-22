@@ -4,7 +4,6 @@ import { faCheckCircle, faLocationDot, faDeleteLeft } from '@fortawesome/free-so
 import useRole from '../../customHook/useRole';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
-import { useQuery } from '@tanstack/react-query'
 
 const Product = ({ product, setClothe }) => {
 

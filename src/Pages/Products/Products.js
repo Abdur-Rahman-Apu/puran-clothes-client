@@ -25,7 +25,12 @@ const Products = () => {
 
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-8 my-8'>
                 {
-                    products.map(product => <Product key={product._id} product={product} setClothe={setClothe}></Product>)
+                    products.length > 0 ?
+                        products.map(product => <Product key={product._id} product={product} setClothe={setClothe}></Product>)
+                        :
+                        <div>
+                            <h1 className='text-xl my-10 font-bold'>No products are available right now</h1>
+                        </div>
                 }
             </div>
 
